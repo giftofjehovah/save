@@ -5,13 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Account.destroy_all
+Catergory.destroy_all
+RecurringTransaction.destroy_all
+Transaction.destroy_all
+User.destroy_all
 [
-	Account.destroy_all
-	Catergory.destroy_all
-	RecurringTransaction.destroy_all
-	Transaction.destroy_all
-	User.destroy_all
-
 	{
 		name: "POSB",
 		balance: 5000,
