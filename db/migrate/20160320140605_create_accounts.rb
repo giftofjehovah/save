@@ -4,6 +4,7 @@ class CreateAccounts < ActiveRecord::Migration
     	t.string :name
     	t.integer :balance
     	t.string :type_of_account
+    	t.integer :limit
     	t.integer :user_id
 
       t.timestamps null: false

@@ -28,6 +28,13 @@ User.destroy_all
 		balance: 10000,
 		type_of_account: "bank",
 		user_id: 1
+	},
+	{
+		name: "Amex",
+		balance: -1000,
+		type_of_account: "credit",
+		user_id: 1,
+		limit: 5000
 	}
 ].each do |account|
   Account.create!(account)
@@ -60,7 +67,7 @@ end
 	{
 		name: "AIA Life Plan",
 		amount: 170,
-		type: "",
+		kind: "expenses",
 		duration: "monthly",
 		start_date: 20,
 		user_id: 1,
@@ -69,7 +76,7 @@ end
 	{
 		name: "Gym Membership",
 		amount: 100,
-		type: "",
+		kind: "expenses",
 		duration: "monthly",
 		start_date: 10,
 		user_id: 1,
@@ -78,7 +85,16 @@ end
 	{
 		name: "Rental",
 		amount: 2000,
-		type: "",
+		kind: "expenses",
+		duration: "monthly",
+		start_date: 1,
+		user_id: 1,
+		account_id: 3
+	},
+	{
+		name: "Salary",
+		amount: 5000,
+		kind: "income",
 		duration: "monthly",
 		start_date: 1,
 		user_id: 1,
@@ -120,7 +136,7 @@ end
 	{
 		name: "Buy GF flowers",
 		amount: 30,
-		user_id: 1,
+		user_id: 2,
 		catergory_id: 6,
 		account_id: 3
 	}
@@ -135,6 +151,13 @@ end
 		password_confirmation: "qwertyui",
 		first_name: "jon",
 		last_name: "phoon"
+	},
+	{
+		email: "yo@you.com",
+		password: "qwertyui",
+		password_confirmation: "qwertyui",
+		first_name: "joanne",
+		last_name: "lo"
 	}
 ].each do |user|
 	User.create!(user)

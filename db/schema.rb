@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20160320141645) do
     t.string   "name"
     t.integer  "balance"
     t.string   "type_of_account"
+    t.integer  "limit"
     t.integer  "user_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
@@ -35,7 +36,7 @@ ActiveRecord::Schema.define(version: 20160320141645) do
   create_table "recurring_transactions", force: :cascade do |t|
     t.string   "name"
     t.integer  "amount"
-    t.string   "type"
+    t.string   "kind"
     t.string   "duration"
     t.integer  "start_date"
     t.integer  "user_id"
