@@ -2,9 +2,9 @@ class CreateAccounts < ActiveRecord::Migration
   def change
     create_table :accounts do |t|
     	t.string :name
-    	t.integer :balance
+    	t.float :balance
     	t.string :type_of_account
-    	t.integer :limit
+    	t.float :limit
     	t.integer :user_id
 
       t.timestamps null: false

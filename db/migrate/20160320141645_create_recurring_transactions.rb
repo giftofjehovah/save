@@ -2,7 +2,7 @@ class CreateRecurringTransactions < ActiveRecord::Migration
   def change
     create_table :recurring_transactions do |t|
     	t.string :name
-    	t.integer :amount
+    	t.float :amount
     	t.string :kind
     	t.string :duration
     	t.integer :start_date

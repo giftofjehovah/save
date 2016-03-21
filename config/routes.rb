@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  post 'transaction/edit'
+
+  post 'transaction/create', to: 'transaction#expenses'
+
+  post 'transaction/delete'
+
   get 'dashboard', to: 'dashboard#index'
   # devise_for :users
   root 'welcome#index'

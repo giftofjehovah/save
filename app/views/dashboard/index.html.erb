@@ -10,8 +10,49 @@
   </li>
 <% end %>
 
+<h1><%= @daily_budget %></h1>
+<%= Date.today.to_formatted_s(:short) %>
+<br><br>
 <% @transactions.each do |transaction| %>
 	<%= transaction.name %><br>
-	<%= transaction.catergory.name %>
-	<%= transaction.amount %> <br><br>
+	<%= transaction.catergory.name %><br>
+	<%= transaction.amount %> 
+	<br><br>
 <% end %>
+<%if false%>
+
+<%= Date.tomorrow %>
+<%end%>
+<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#expenses">
+  -
+</button>
+
+<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#income">
+  +
+</button>
+
+<div class="modal fade" id="expenses" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for @transaction, url: {controller: 'transaction', action: 'expenses'} do |f| %>
+	        <%= f.text_field :name %>
+	        <%= f.text_field :amount %>
+	        <%= f.submit "Done" %>
+      	<%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

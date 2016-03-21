@@ -2,7 +2,8 @@ class CreateTransactions < ActiveRecord::Migration
   def change
     create_table :transactions do |t|
     	t.string :name
-    	t.integer :amount
+    	t.float :amount
+      t.string :kind
     	t.integer :user_id
     	t.integer :catergory_id
     	t.integer :account_id

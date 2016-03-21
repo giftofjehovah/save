@@ -108,6 +108,7 @@ end
 	{
 		name: "Singtel Bill",
 		amount: 132,
+		kind: "expenses",
 		user_id: 1,
 		catergory_id: 5,
 		account_id: 1
@@ -115,6 +116,7 @@ end
 	{
 		name: "Lunch",
 		amount: 3.5,
+		kind: "expenses",
 		user_id: 1,
 		catergory_id: 2,
 		account_id: 2
@@ -122,6 +124,7 @@ end
 	{
 		name: "Nike Shoe",
 		amount: 200,
+		kind: "expenses",
 		user_id: 1,
 		catergory_id: 1,
 		account_id: 3
@@ -129,6 +132,7 @@ end
 	{
 		name: "Dinner",
 		amount: 32,
+		kind: "expenses",
 		user_id: 1,
 		catergory_id: 2,
 		account_id: 2
@@ -136,6 +140,7 @@ end
 	{
 		name: "Buy GF flowers",
 		amount: 30,
+		kind: "expenses",
 		user_id: 2,
 		catergory_id: 6,
 		account_id: 3
