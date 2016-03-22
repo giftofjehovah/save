@@ -7,13 +7,25 @@ class AccountsController < LoginController
   	@bank = []
   	@cash = []
   	@credit = []
+  	@bank_transactions = []
+  	@cash_transactions = []
+  	@credit_transactions = []
   	@accounts.each do |account|
   		if account.type_of_account == 'bank'
   			@bank << account
+  			account.transactions.each do |transaction|
+  				@bank_transactions << transaction
+  			end
   		elsif account.type_of_account == 'cash'
   			@cash << account
+  			account.transactions.each do |transaction|
+  				@cash_transactions << transaction
+  			end
   		elsif account.type_of_account == 'credit'
   			@credit << account
+  			account.transactions.each do |transaction|
+  				@credit_transactions << transaction
+  			end
   		end
   	end
   end
@@ -28,6 +40,6 @@ class AccountsController < LoginController
 
   private 
   def account_params
-      params.require(:account).permit(:name, :balance, :type_of_account)
+      params.require(:account).permit(:name, :balance, :type_of_account, :limit)
     end
 end
