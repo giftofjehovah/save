@@ -1,3 +1,16 @@
+<header>
+	 <% if user_signed_in? %>
+  <li>
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Login', new_user_session_path)  %>  
+  </li>
+<% end %>
+	
+</header>
+<main>
 <h1>Summary#index</h1>
 <p>Find me in app/views/summary/index.html.erb</p>
 
@@ -5,4 +18,14 @@
 <%= s[:catergory] %>
 <%= s[:total] %>
 <br><br>
+</main>
 <% end %>
+<footer>
+	<nav>
+		<li><a href='<%= accounts_path %>'>Accounts</a></li>
+		<li><a href='<%= compare_path %>'>Compare</a></li>
+		<li><a href='<%= dashboard_path %>'>Dashboard</a></li>
+		<li><a href='<%= recurring_path %>'>Recurring</a></li>
+		<li><a href='<%= summary_path %>'>Summary</a></li>
+	</nav>
+</footer>

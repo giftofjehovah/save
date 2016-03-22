@@ -1,4 +1,4 @@
-class SummaryController < ApplicationController
+class SummaryController < LoginController
   def index
   	@summary = []
   	summaries = Catergory.all
