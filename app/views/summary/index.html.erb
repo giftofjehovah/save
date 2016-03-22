@@ -1,2 +1,8 @@
 <h1>Summary#index</h1>
 <p>Find me in app/views/summary/index.html.erb</p>
+
+<% @summary.each do |s| %>
+<%= s[:catergory] %>
+<%= s[:total] %>
+<br><br>
+<% end %>
