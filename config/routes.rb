@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
-  post 'transaction/edit'
+  get 'summary', to: 'summary#index'
 
-  post 'transaction/create', to: 'transaction#expenses'
+  get 'compare', to: 'compare#index'
 
-  post 'transaction/delete'
+  get 'recurring', to: 'recurring#index'
+
+  get 'accounts', to: 'accounts#index'
+
+  # post 'transaction/edit'
+  # post 'transaction/create', to: 'transaction#expenses'
+  resources :transactions, only: [:create, :edit, :delete]
+  # post 'transaction/delete'
 
   get 'dashboard', to: 'dashboard#index'
   # devise_for :users
