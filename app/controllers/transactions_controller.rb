@@ -29,6 +29,14 @@ class TransactionsController < LoginController
 
   def destroy
      transaction = Transaction.find(params[:id])
+     account = transaction.account
+
+    if transaction.kind == "expenses"
+      account.balance += transaction.amount
+    elsif transaction.kind == "income"
+      account.balance -= transaction.amount
+    end
+
     if transaction.destroy
       redirect_to dashboard_path
     end

@@ -22,6 +22,7 @@
           <%= transaction.kind %>
           <% end %>
         <% end %>
+        <%= link_to 'Destroy', account_path(bank.id) , method: :delete%>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -55,6 +56,7 @@
           <%= transaction.kind %>
           <% end %>
         <% end %>
+        <%= link_to 'Destroy', account_path(cash.id) , method: :delete%>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -90,6 +92,7 @@
           <%= transaction.kind %>
           <% end %>
         <% end %>
+        <%= link_to 'Destroy', account_path(credit.id) , method: :delete%>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -104,6 +107,7 @@
 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createAccount">
 Add a Account
 </button>
+
 
 <div class="modal fade" id="createAccount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">

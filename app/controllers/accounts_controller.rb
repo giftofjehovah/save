@@ -2,7 +2,7 @@ class AccountsController < LoginController
   def index
   	@accounts = Account.where(user_id: current_user.id)
   	@account = Account.new
-  	@current_account = Account.find(1)
+  	
   	
   	@bank = []
   	@bank_total = 0;
@@ -42,6 +42,15 @@ class AccountsController < LoginController
   	if @account.save
   		redirect_to accounts_path
   	end
+  end
+
+  def destroy
+  	@account = Account.find(params[:id])
+
+  	if @account.destroy
+		redirect_to accounts_path
+	end
+  	
   end
 
   private 
