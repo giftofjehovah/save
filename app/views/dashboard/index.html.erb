@@ -13,16 +13,20 @@
 <h1><%= @daily_budget %></h1>
 <%= Date.today.to_formatted_s(:short) %>
 <br><br>
+<% index = -1 %>
+<% arr = [] %>
 <% @transactions.each do |transaction| %>
+<% index += 1 %>
+<% arr.push(index) %>
+<div class='panel panel-primary' data-toggle="modal" data-target="#editTransaction">
+  <div class="panel-heading"></div>
 	<%= transaction.name %><br>
 	<%= transaction.catergory.name %><br>
 	<%= transaction.amount %> 
 	<br><br>
+</div>
 <% end %>
-<%if false%>
-
-<%= Date.tomorrow %>
-<%end%>
+<%= arr %>
 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#expenses">
   -
 </button>
@@ -66,7 +70,30 @@
           <%= f.hidden_field :kind, :value => "income"%>
           <%= f.text_field :name %>
           <%= f.text_field :amount %>
-          <%= f.submit "Dne" %>
+          <%= f.submit "Done" %>
+        <%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editTransaction" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for @transaction do |f| %>
+          <%= f.hidden_field :kind, :value => @transactions[2].id %>
+          <%= f.text_field :name, :value => @transactions[2].name %>
+          <%= f.text_field :amount, :value => @transactions[2].amount %>
+          <%= f.submit "Done" %>
         <%end%>
       </div>
       <div class="modal-footer">
