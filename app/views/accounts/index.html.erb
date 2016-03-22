@@ -10,8 +10,8 @@
 
 
 <h2>Cash</h2>
-<div class="panel panel-primary">
 <% @cash.each do |cash| %>
+<div class="panel panel-primary">
 <%= cash.name %>
 <%= cash.balance %>
 </div>
@@ -19,10 +19,37 @@
 
 
 <h2>Credit Cards</h2>
-<div class="panel panel-primary">
 <% @credit.each do |credit| %>
+<div class="panel panel-primary">
 <%= credit.name %>
 <%= credit.balance %>
 <%= credit.limit %>
 </div>
 <% end %>
+
+<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createAccount">
+Add a Account
+</button>
+
+<div class="modal fade" id="createAccount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for @account do |f| %>
+			<%= f.select :type_of_account, [['Bank','bank'],['Cash','cash'],['Credit Card','credit']] %>
+	        <%= f.text_field :name, :placeholder => "name" %>
+	        <%= f.text_field :balance, :placeholder => "balance" %>
+	        <%= f.submit "Done" %>
+      	<%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

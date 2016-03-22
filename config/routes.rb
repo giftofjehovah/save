@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # post 'transaction/edit'
   # post 'transaction/create', to: 'transaction#expenses'
   resources :transactions, only: [:create, :edit, :delete]
+  resources :accounts, only: [:create, :edit, :delete]
   # post 'transaction/delete'
 
   get 'dashboard', to: 'dashboard#index'

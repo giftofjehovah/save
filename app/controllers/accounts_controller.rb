@@ -1,6 +1,7 @@
 class AccountsController < ApplicationController
   def index
   	@accounts = Account.where(user_id: current_user.id)
+  	@account = Account.new
   	@bank = []
   	@cash = []
   	@credit = []
@@ -14,4 +15,17 @@ class AccountsController < ApplicationController
   		end
   	end
   end
+
+  def create
+  	@account = Account.new(account_params)
+  	@account.user = current_user
+  	if @account.save
+  		redirect_to accounts_path
+  	end
+  end
+
+  private 
+  def account_params
+      params.require(:account).permit(:name, :balance, :type_of_account)
+    end
 end
