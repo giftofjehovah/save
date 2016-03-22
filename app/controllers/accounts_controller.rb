@@ -1,7 +1,9 @@
-class AccountsController < ApplicationController
+class AccountsController < LoginController
   def index
   	@accounts = Account.where(user_id: current_user.id)
   	@account = Account.new
+  	@current_account = Account.find(1)
+  	
   	@bank = []
   	@cash = []
   	@credit = []

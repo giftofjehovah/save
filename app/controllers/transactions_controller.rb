@@ -1,5 +1,11 @@
 class TransactionsController < LoginController
-  def edit
+
+  def update
+    transaction = Transaction.find(params[:id])
+    if transaction.update(transaction_params)
+      redirect_to dashboard_path
+    end
+
   end
 
   def create

@@ -2,7 +2,7 @@
 <p>Find me in app/views/accounts/index.html.erb</p>
 <h2>Bank</h2>
 <% @bank.each do |bank| %>
-<div class="panel panel-primary">
+<div class="panel panel-primary" data-toggle="modal" data-target="#showTransactions">
 <%= bank.name %>
 <%= bank.balance %>
 </div>
@@ -53,3 +53,26 @@ Add a Account
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="showTransactions" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <% @current_account.transactions.each do |transaction| %>
+        <%= transaction.name %>
+        <%= transaction.amount %>
+        <%= transaction.kind %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+

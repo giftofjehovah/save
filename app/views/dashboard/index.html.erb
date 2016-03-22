@@ -13,20 +13,20 @@
 <h1><%= @daily_budget %></h1>
 <%= Date.today.to_formatted_s(:short) %>
 <br><br>
-<% index = -1 %>
-<% arr = [] %>
+
+
 <% @transactions.each do |transaction| %>
-<% index += 1 %>
-<% arr.push(index) %>
-<div class='panel panel-primary' data-toggle="modal" data-target="#editTransaction">
+
+<div class='transactions panel panel-primary' data-toggle="modal" data-target="#editTransaction" data-id="<%= transaction.id %>" data-name="<%= transaction.name %>" data-amount="<%= transaction.amount %>" data-catergory="<%= transaction.catergory.name %>" data-kind="<%= transaction.kind %> ">
   <div class="panel-heading"></div>
 	<%= transaction.name %><br>
 	<%= transaction.catergory.name %><br>
 	<%= transaction.amount %> 
+  <%= transaction.kind %> 
 	<br><br>
 </div>
 <% end %>
-<%= arr %>
+
 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#expenses">
   -
 </button>
@@ -89,10 +89,11 @@
         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
       </div>
       <div class="modal-body">
-        <%= form_for @transaction do |f| %>
-          <%= f.hidden_field :kind, :value => @transactions[2].id %>
-          <%= f.text_field :name, :value => @transactions[2].name %>
-          <%= f.text_field :amount, :value => @transactions[2].amount %>
+        <%= form_for @transaction, method: 'patch' do |f| %>
+          <%= f.hidden_field :id %>
+          <%= f.hidden_field :kind %>
+          <%= f.text_field :name %>
+          <%= f.text_field :amount %>
           <%= f.submit "Done" %>
         <%end%>
       </div>
@@ -104,6 +105,33 @@
   </div>
 </div>
 
+<script>
 
+
+    console.log($('#editTransaction'));
+    $('.transactions').on('click', function (event) {
+      console.log(event.target)
+    var button = $(event.target) // Button that triggered the modal
+    var id = button.data('id') // Extract info from data-* attributes
+    var name = button.data('name')
+    var amount = button.data('amount')
+    var kind = button.data('kind')
+    var catergory = button.data('catergory')
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $('#editTransaction')
+    modal.find('.new_transaction').attr('id','edit_transaction_'+id)
+    modal.find('.new_transaction').attr('action','/transactions/'+id)
+    modal.find('#transaction_id').val(id)
+    modal.find('#transaction_name').val(name)
+    modal.find('#transaction_amount').val(amount)
+    modal.find('#transaction_kind').val(kind)
+  })
+
+  
+  
+  
+ 
+</script>
 
 
