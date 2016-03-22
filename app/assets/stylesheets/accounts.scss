@@ -6,6 +6,10 @@ html, body
 	height: 100%;
 	margin: 0;
 }
+.input-group-addon
+{
+	background-color: white;
+}
 #login_panel
 {
 	border-radius: 7px;
@@ -21,7 +25,9 @@ html, body
 .login
 {
 	text-align: center;
-	width: 450px;
+	max-width: 450px;
+	height: auto;
+	width: 90%;
 	margin: 0 auto;
 	position: relative;
 	top: 50%;
