@@ -11,17 +11,31 @@ class TransactionsController < LoginController
   def create
   	transaction = Transaction.new(transaction_params)
   	transaction.user = current_user
+    account = Account.find(transaction_params[:account_id])
+  
+    if transaction_params[:kind] == 'expenses'
+      account.balance -= transaction_params[:amount].to_f
+    elsif transaction_params[:kind] == 'income'
+      account.balance += transaction_params[:amount].to_f
+    end
+
   	transaction.catergory = Catergory.find(1) 
   	if transaction.save
+      if account.save
   		redirect_to dashboard_path
+      end
   	end
   end
 
-  def delete
+  def destroy
+     transaction = Transaction.find(params[:id])
+    if transaction.destroy
+      redirect_to dashboard_path
+    end
   end
 
  private 
   def transaction_params
-      params.require(:transaction).permit(:name, :amount, :kind)
+      params.require(:transaction).permit(:name, :amount, :kind, :account_id)
     end
 end

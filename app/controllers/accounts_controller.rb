@@ -5,24 +5,30 @@ class AccountsController < LoginController
   	@current_account = Account.find(1)
   	
   	@bank = []
+  	@bank_total = 0;
   	@cash = []
+  	@cash_total = 0;
   	@credit = []
+  	@credit_total = 0;
   	@bank_transactions = []
   	@cash_transactions = []
   	@credit_transactions = []
   	@accounts.each do |account|
   		if account.type_of_account == 'bank'
   			@bank << account
+  			@bank_total += account.balance
   			account.transactions.each do |transaction|
   				@bank_transactions << transaction
   			end
   		elsif account.type_of_account == 'cash'
   			@cash << account
+  			@cash_total += account.balance
   			account.transactions.each do |transaction|
   				@cash_transactions << transaction
   			end
   		elsif account.type_of_account == 'credit'
   			@credit << account
+  			@credit_total += account.balance
   			account.transactions.each do |transaction|
   				@credit_transactions << transaction
   			end

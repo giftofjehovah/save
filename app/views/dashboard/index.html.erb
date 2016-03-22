@@ -17,12 +17,13 @@
 
 <% @transactions.each do |transaction| %>
 
-<div class='transactions panel panel-primary' data-toggle="modal" data-target="#editTransaction" data-id="<%= transaction.id %>" data-name="<%= transaction.name %>" data-amount="<%= transaction.amount %>" data-catergory="<%= transaction.catergory.name %>" data-kind="<%= transaction.kind %> ">
+<div class='transactions panel panel-primary' data-toggle="modal" data-target="#editTransaction" data-id="<%= transaction.id %>" data-name="<%= transaction.name %>" data-amount="<%= transaction.amount %>" data-catergory="<%= transaction.catergory.name %>" data-kind="<%= transaction.kind %>" data-account="<%= transaction.account.id %>">
   <div class="panel-heading"></div>
 	<%= transaction.name %><br>
 	<%= transaction.catergory.name %><br>
 	<%= transaction.amount %> 
   <%= transaction.kind %> 
+  <%= transaction.account.name %>
 	<br><br>
 </div>
 <% end %>
@@ -47,6 +48,8 @@
         <%= f.hidden_field :kind, :value => "expenses"%>
 	        <%= f.text_field :name %>
 	        <%= f.text_field :amount %>
+          <%= f.label "Account" %><br />
+          <%= f.collection_select(:account_id, @accounts, :id, :name) %>
 	        <%= f.submit "Done" %>
       	<%end%>
       </div>
@@ -70,6 +73,8 @@
           <%= f.hidden_field :kind, :value => "income"%>
           <%= f.text_field :name %>
           <%= f.text_field :amount %>
+          <%= f.label "Account" %><br />
+          <%= f.collection_select(:account_id, @accounts, :id, :name) %>
           <%= f.submit "Done" %>
         <%end%>
       </div>
@@ -93,9 +98,14 @@
           <%= f.hidden_field :id %>
           <%= f.hidden_field :kind %>
           <%= f.text_field :name %>
+          <%= f.label "Account" %><br />
+          <%= f.collection_select(:account_id, @accounts, :id, :name) %>
           <%= f.text_field :amount %>
           <%= f.submit "Done" %>
         <%end%>
+        <div class="destroy">
+          <%= link_to 'Destroy', @transaction, method: :delete%>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -117,6 +127,7 @@
     var amount = button.data('amount')
     var kind = button.data('kind')
     var catergory = button.data('catergory')
+    var account = button.data('account')
     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
     // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
     var modal = $('#editTransaction')
@@ -126,6 +137,8 @@
     modal.find('#transaction_name').val(name)
     modal.find('#transaction_amount').val(amount)
     modal.find('#transaction_kind').val(kind)
+    modal.find('#transaction_account_id').val(account)
+    modal.find('.destroy a').attr('href','/transactions/'+id)
   })
 
   

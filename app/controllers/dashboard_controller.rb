@@ -4,6 +4,7 @@ class DashboardController < LoginController
   	@transactions = Transaction.where(user_id: current_user.id).reverse_order
   	@daily_budget = daily_budget
  	  @transaction = Transaction.new
+    @accounts = Account.where(user_id: current_user.id)
   end
 
   def daily_budget
