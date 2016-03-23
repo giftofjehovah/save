@@ -197,14 +197,9 @@
     var id = event.target.value
     var amount = '$'+$('#'+id).val()
     console.log(event.target.id)
-    if(event.target.id == "bank_amount1")
-    {
-      bank1.text(amount)
-    }
-    else
-    {
-      bank.text(amount) 
-    }
+    bank1.text(amount)
+    bank.text(amount) 
+    
   })
 
   $('.no_style_button').on('click', function(event)
