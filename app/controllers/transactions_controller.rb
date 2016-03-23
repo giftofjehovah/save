@@ -3,6 +3,8 @@ class TransactionsController < LoginController
   def update
     transaction = Transaction.find(params[:id])
 
+    
+    
     if transaction.update(transaction_params)
       redirect_to dashboard_path
     end
