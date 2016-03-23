@@ -11,115 +11,208 @@
   
 </header>
 <main>
-<h1>Accounts#index</h1>
-<p>Find me in app/views/accounts/index.html.erb</p>
-<h2>Bank <%= @bank_total %></h2>
-<% @bank.each do |bank| %>
-<div class="panel panel-primary" data-toggle="modal" data-target="#showTransactions<%= bank.id %>">
-<%= bank.name %>
-<%= bank.balance %>
-</div>
-
-<div class="modal fade" id="showTransactions<%= bank.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+<div class="container" id="account_page">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-xs-9">
+        Bank Accounts
       </div>
-      <div class="modal-body">
-        <% @bank_transactions.each do |transaction| %>
-          <% if transaction.account_id == bank.id %>
-          <%= transaction.name %>
-          <%= transaction.amount %>
-          <%= transaction.kind %>
-          <% end %>
-        <% end %>
-        <%= link_to 'Destroy', account_path(bank.id) , method: :delete%>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+      <div class="col-xs-3">
+        $<%= @bank_total %>
       </div>
     </div>
   </div>
-</div>
-<% end %>
+  <div class="panel-body">
+    <% @bank.each do |bank| %>
+      <div class="row box" data-toggle="modal" data-target="#showTransactions<%= bank.id %>">
+        <div class="col-xs-9">
+          <%= bank.name %>
+        </div>
+        <div class="col-xs-3">
+          $<%= bank.balance %>
+        </div>
+    </div>
 
-
-<h2>Cash <%= @cash_total %></h2>
-<% @cash.each do |cash| %>
-<div class="panel panel-primary" data-toggle="modal" data-target="#showTransactions<%= cash.id %>">
-<%= cash.name %>
-<%= cash.balance %>
-</div>
-
-<div class="modal fade" id="showTransactions<%= cash.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        <% @bank_transactions.each do |transaction| %>
-          <% if transaction.account_id == cash.id %>
-          <%= transaction.name %>
-          <%= transaction.amount %>
-          <%= transaction.kind %>
-          <% end %>
-        <% end %>
-        <%= link_to 'Destroy', account_path(cash.id) , method: :delete%>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+    <div class="modal fade" id="showTransactions<%= bank.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel"><%= bank.name %></h4>
+          </div>
+          <div class="modal-body">
+            <% @bank_transactions.each do |transaction| %>
+              <% if transaction.account_id == bank.id %>
+                <% if transaction.kind == 'income'
+                   @color = 'success'
+                  elsif transaction.kind == 'expenses'
+                  @color = 'danger'
+                  end  
+                %>
+              <div class="panel panel-<%= @color %>">
+                <div class="panel-heading">
+                <div class="row">
+                  <div class="col-xs-9">
+                    <%= transaction.name %>
+                  </div>
+                  <div class="col-xs-3">
+                    $<%= transaction.amount %>
+                  </div>
+                </div>
+                </div> 
+              </div> 
+              <% end %>
+            <% end %>
+            
+          </div>
+          <div class="modal-footer">
+            <%= link_to "Delete #{bank.name} Account", account_path(bank.id) , method: :delete, class:'btn btn-danger full_button'%>
+          </div>
+        </div>
       </div>
     </div>
+    <% end %>
   </div>
 </div>
 
-<% end %>
 
 
-<h2>Credit Cards <%= @credit_total %></h2>
-<% @credit.each do |credit| %>
-<div class="panel panel-primary" data-toggle="modal" data-target="#showTransactions<%= credit.id %>">
-<%= credit.name %>
-<%= credit.balance %>
-<%= credit.limit %>
-</div>
-
-<div class="modal fade" id="showTransactions<%= credit.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+  <div class="panel panel-info">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-xs-9">
+        Cash
       </div>
-      <div class="modal-body">
-        <% @bank_transactions.each do |transaction| %>
-          <% if transaction.account_id == credit.id %>
-          <%= transaction.name %>
-          <%= transaction.amount %>
-          <%= transaction.kind %>
-          <% end %>
-        <% end %>
-        <%= link_to 'Destroy', account_path(credit.id) , method: :delete%>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+      <div class="col-xs-3">
+        $<%= @cash_total %>
       </div>
     </div>
   </div>
+  <div class="panel-body">
+    <% @cash.each do |cash| %>
+      <div class="row box" data-toggle="modal" data-target="#showTransactions<%= cash.id %>">
+        <div class="col-xs-9">
+          <%= cash.name %>
+        </div>
+        <div class="col-xs-3">
+          $<%= cash.balance %>
+        </div>
+    </div>
+
+    <div class="modal fade" id="showTransactions<%= cash.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel"><%= cash.name %></h4>
+          </div>
+          <div class="modal-body">
+            <% @cash_transactions.each do |transaction| %>
+              <% if transaction.account_id == cash.id %>
+                <% if transaction.kind == 'income'
+                   @color = 'success'
+                  elsif transaction.kind == 'expenses'
+                  @color = 'danger'
+                  end  
+                %>
+              <div class="panel panel-<%= @color %>">
+                <div class="panel-heading">
+                <div class="row">
+                  <div class="col-xs-9">
+                    <%= transaction.name %>
+                  </div>
+                  <div class="col-xs-3">
+                    $<%= transaction.amount %>
+                  </div>
+                </div>
+                </div> 
+              </div> 
+              <% end %>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+            <%= link_to "Delete #{cash.name} Account", account_path(cash.id) , method: :delete, class:'btn btn-danger full_button'%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
 </div>
 
-<% end %>
 
-<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createAccount">
-Add a Account
-</button>
+
+<div class="panel panel-warning">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-xs-9">
+        Credit Cards
+      </div>
+      <div class="col-xs-3">
+        $<%= @credit_total %>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <% @credit.each do |credit| %>
+      <div class="row box" data-toggle="modal" data-target="#showTransactions<%= credit.id %>">
+        <div class="col-xs-9">
+          <%= credit.name %>
+        </div>
+        <div class="col-xs-3">
+          $<%= credit.balance %>
+        </div>
+    </div>
+
+    <div class="modal fade" id="showTransactions<%= credit.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel"><%= credit.name %></h4>
+          </div>
+          <div class="modal-body">
+            <% @credit_transactions.each do |transaction| %>
+              <% if transaction.account_id == credit.id %>
+                <% if transaction.kind == 'income'
+                   @color = 'success'
+                  elsif transaction.kind == 'expenses'
+                  @color = 'danger'
+                  end  
+                %>
+              <div class="panel panel-<%= @color %>">
+                <div class="panel-heading">
+                <div class="row">
+                  <div class="col-xs-9">
+                    <%= transaction.name %>
+                  </div>
+                  <div class="col-xs-3">
+                    $<%= transaction.amount %>
+                  </div>
+                </div>
+                </div> 
+              </div> 
+              <% end %>
+            <% end %>
+            
+          </div>
+          <div class="modal-footer">
+           <%= link_to "Delete #{credit.name} Account", account_path(credit.id) , method: :delete, class:'btn btn-danger full_button'%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+  <button type="button" class="btn btn-primary full_button" data-toggle="modal" data-target="#createAccount">
+  Add a Account
+  </button>
+</div>
+</div>
+
 
 
 <div class="modal fade" id="createAccount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -127,20 +220,26 @@ Add a Account
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">Create a new Account</h4>
       </div>
       <div class="modal-body">
         <%= form_for @account do |f| %>
-			<%= f.select :type_of_account, [['Bank','bank'],['Cash','cash'],['Credit Card','credit']] %>
-	        <%= f.text_field :name, :placeholder => "name" %>
-	        <%= f.text_field :balance, :placeholder => "balance" %>
-          <%= f.hidden_field :limit, :placeholder => "limit" %>
-	        <%= f.submit "Done" %>
-      	<%end%>
+        <div class="form-group">
+            <%= f.select :type_of_account, [['Bank','bank'],['Cash','cash'],['Credit Card','credit']], {}, {:class => 'form-control'} %>
+        </div>
+		<div class="form-group">
+      <%= f.text_field :name, :placeholder => "name", class: 'form-control' %>
+    </div>
+    <div class="form-group">
+       <%= f.text_field :balance, :placeholder => "balance", class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.hidden_field :limit, :placeholder => "limit", class: 'form-control' %>
+    </div>  	
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <%= f.submit "Create", :class => 'btn btn-success full_button' %>
+        <%end%>
       </div>
     </div>
   </div>
@@ -159,6 +258,7 @@ Add a Account
     }
   })
 </script>
+</div>
 </main>
 <footer>
   <nav class="navbar navbar-default navbar-fixed-bottom">

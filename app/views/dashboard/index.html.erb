@@ -95,7 +95,10 @@
                  <%= f.collection_select(:catergory_id, @catergories, :id, :name, {}, {:class => 'form-control'}) %>
               </div>
               <div class="col-xs-6">
-                <%= f.number_field :amount, class: 'form-control', placeholder: 'enter amount' %>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <%= f.number_field :amount, class: 'form-control' %>
+                </div>
               </div>
             </div>
           </div>
@@ -141,7 +144,10 @@
                  <%= f.collection_select(:catergory_id, @catergories, :id, :name, {}, {:class => 'form-control'}) %>
               </div>
               <div class="col-xs-6">
-                <%= f.number_field :amount, class: 'form-control', placeholder: 'enter amount' %>
+              <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                <%= f.number_field :amount, class: 'form-control' %>
+              </div>
               </div>
             </div>
           </div>
@@ -186,7 +192,10 @@
                  <%= f.collection_select(:catergory_id, @catergories, :id, :name, {}, {:class => 'form-control'}) %>
               </div>
               <div class="col-xs-6">
-                <%= f.number_field :amount, class: 'form-control', placeholder: 'enter amount' %>
+              <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                <%= f.number_field :amount, class: 'form-control' %>
+              </div>
               </div>
             </div>
           </div>
