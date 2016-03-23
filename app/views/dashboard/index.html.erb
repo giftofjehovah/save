@@ -41,7 +41,7 @@
     <div class='transactions panel panel-<%=@style%>' data-toggle="modal" data-target="#editTransaction" data-id="<%= transaction.id %>" data-name="<%= transaction.name %>" data-amount="<%= transaction.amount %>" data-catergory="<%= transaction.catergory.name %>" data-kind="<%= transaction.kind %>" data-account="<%= transaction.account.id %>">
     <div class="panel-heading"></div>
     <div class="panel-body">
-       <div class="col-xs-9">
+       <div class="col-xs-8">
        <div class="transaction_name">
         <div class="icon">
           <i class="fa fa-<%= transaction.catergory.icon %> fa-2x"></i>
@@ -51,15 +51,11 @@
           <h4><%= transaction.name %></h4>
           <%= transaction.catergory.name %>
         </div>
-        
        </div>
-        
-       
       </div>
-      <div class="col-xs-3" style="text-align:center">
+      <div class="col-xs-4" style="text-align:center">
         <h4>$<%= transaction.amount %></h4>
-        <p><%= transaction.account.name %></p>
-        
+        <p><%= transaction.account.name %></p> 
       </div>
     </div>
   </div>
@@ -79,7 +75,7 @@
         <%= form_for @transaction do |f| %>
         <%= f.hidden_field :kind, :value => "expenses"%>
 	        <%= f.text_field :name %>
-	        <%= f.text_field :amount %>
+	        <%= f.number_field :amount %>
           <%= f.label "Account" %><br />
           <%= f.collection_select(:account_id, @accounts, :id, :name) %>
 	        <%= f.submit "Done" %>
@@ -104,7 +100,7 @@
         <%= form_for @transaction do |f| %>
           <%= f.hidden_field :kind, :value => "income"%>
           <%= f.text_field :name %>
-          <%= f.text_field :amount %>
+          <%= f.number_field :amount %>
           <%= f.label "Account" %><br />
           <%= f.collection_select(:account_id, @accounts, :id, :name) %>
           <%= f.submit "Done" %>
@@ -132,7 +128,7 @@
           <%= f.text_field :name %>
           <%= f.label "Account" %><br />
           <%= f.collection_select(:account_id, @accounts, :id, :name) %>
-          <%= f.text_field :amount %>
+          <%= f.number_field :amount %>
           <%= f.submit "Done" %>
         <%end%>
         <div class="destroy">
