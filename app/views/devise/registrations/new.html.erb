@@ -1,29 +1,64 @@
-<h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+<div class="container vcenter" id="signup_container">
+  <div class="row">
+    <div class="col-xs-12">
+       <h3>Sign up for free and experience Save today</h3>
+    </div>
   </div>
+  <div class="row top_buffer" id="signup_row">
+    <div class="col-xs-12 col-md-6" id="signup_left">
+      <h4>Free Account</h4>
+      <p>Create apps, connect databases and add-on services, and collaborate on your apps, for free.</p>
+      <br>
+      <h4>Your saving platform</h4>
+      <p>A platform for apps, with app management & instant scaling, for development and production.</p>
+      <br>
+      <h4>Save now</h4>
+      <p>Go from code to running app in minutes. Deploy, scale, and deliver your app to the world.</p>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+      
+      <div class="form-group">
+        <%= f.text_field :first_name, autofocus: true, class: 'form-control', placeholder: 'First name' %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+      <div class="form-group">
+        <%= f.text_field :last_name, autofocus: true, class: 'form-control', placeholder: 'Last name' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email' %>
+      </div>
+      <div class="form-group">
+        <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password (8 characters minimum)' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Confirm password' %>
+      </div>
+      <div class="row">
+      <div class="actions">
+      <%= f.submit "Create Free Account", class: 'btn', id: 'signup_button' %>
+      </div>
+      <% end %>
+      </div>
+      <div id="signup_login">
+        <%- if controller_name != 'sessions' %>
+        <p>Already have an account?</p>
+        <div id="space"></div>
+        <%= link_to "Log in", new_session_path(resource_name) %><br />
+        <% end -%>
+      </div>
+        
+    </div>
+    
   </div>
+ 
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+  
 
-<%= render "devise/shared/links" %>
+
+</div>

@@ -6,6 +6,54 @@ html, body
 	height: 100%;
 	margin: 0;
 }
+#signup_login
+{
+	display: flex;
+	justify-content: center;
+	padding-top: 20px;
+}
+#signup_row
+{
+	border-top: 1px solid black;
+
+}
+
+#signup_container
+{
+	margin: 0 auto;
+	width: 90%;
+	max-width: 650px;
+	text-align: center;
+	margin-top: 60px;
+	margin-bottom: 50px;
+	// position: relative;
+	// top: 50%;
+	// transform: translateY(-50%);
+}
+.top_buffer
+{
+	margin-top: 35px;
+	padding-top: 45px;
+}
+#signup_button
+{
+	width:90%;
+}
+#signup_left
+{
+	text-align: left;
+	padding-bottom: 20px;
+}
+#login_group
+{
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
 .input-group-addon
 {
 	background-color: white;
@@ -22,21 +70,33 @@ html, body
 {
 	padding: 45px;
 }
+#login_footer
+{
+	display: flex;
+	justify-content: center;
+}
+#space
+{
+	padding-left: 10px;
+}
 .login
 {
 	text-align: center;
 	max-width: 450px;
 	height: auto;
 	width: 90%;
-	margin: 0 auto;
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
+	
 }
 .login_background
 {
 	background-color: black;
-	height: 100%
+	height: 100%;
+
+}
+#forget_password
+{
+	margin-top: 30px;
+	align-self: flex-end;
 }
 .login_field
 {
