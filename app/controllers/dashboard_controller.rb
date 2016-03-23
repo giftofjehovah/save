@@ -16,6 +16,7 @@ class DashboardController < LoginController
   		end
   	end
  	daily = @monthly/(Time.days_in_month Date.today.month)
+  daily.round(2)
  end
 
 def day_expenses

@@ -27,8 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem "rails-erd"
-gem "igs_pie_chart"
-
+gem "d3-rails"
 
 # Use Unicorn as the app server
 # gem 'unicorn'

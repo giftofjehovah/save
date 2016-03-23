@@ -9,37 +9,64 @@
   </li>
 <% end %>
 </header>
-<main>
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
+<main class="container">
+
+ <div class="row" id="dashboard_head">
+    <h4><%= Date.today.to_formatted_s(:short) %></h4>
+    <div class="row" id="dashboard_head_body">
+      <button class="no_style_button" data-toggle="modal" data-target="#income">
+      +
+      </button>
+      <div id="daily_budget">
+        <h1>$<%= @daily_budget %></h1>
+        <p>Budget Available</p>
+      </div>
+       
+       <button class="no_style_button" data-toggle="modal" data-target="#expenses">
+        -
+      </button>
+    </div>
+ </div>
 
 
-
-<h1><%= @daily_budget %></h1>
-<%= Date.today.to_formatted_s(:short) %>
-<br><br>
-
-
-<% @transactions.each do |transaction| %>
-
-<div class='transactions panel panel-primary' data-toggle="modal" data-target="#editTransaction" data-id="<%= transaction.id %>" data-name="<%= transaction.name %>" data-amount="<%= transaction.amount %>" data-catergory="<%= transaction.catergory.name %>" data-kind="<%= transaction.kind %>" data-account="<%= transaction.account.id %>">
-  <div class="panel-heading"></div>
-	<%= transaction.name %><br>
-	<%= transaction.catergory.name %><br>
-	<%= transaction.amount %> 
-  <%= transaction.kind %> 
-  <%= transaction.account.name %>
-	<br><br>
+<div class="row" id="transactions">  
+  <div class="col-xs-12">
+    <% @transactions.each do |transaction| %>
+    <% if transaction.kind == 'income' 
+          @style = 'success'
+        elsif transaction.kind == 'expenses'
+          @style = 'danger'
+        end
+    %>
+    <div class='transactions panel panel-<%=@style%>' data-toggle="modal" data-target="#editTransaction" data-id="<%= transaction.id %>" data-name="<%= transaction.name %>" data-amount="<%= transaction.amount %>" data-catergory="<%= transaction.catergory.name %>" data-kind="<%= transaction.kind %>" data-account="<%= transaction.account.id %>">
+    <div class="panel-heading"></div>
+    <div class="panel-body">
+       <div class="col-xs-9">
+       <div class="transaction_name">
+        <div class="icon">
+          <i class="fa fa-<%= transaction.catergory.icon %> fa-2x"></i>
+        </div>
+        <div class="space"></div>
+        <div class="name_catergory">
+          <h4><%= transaction.name %></h4>
+          <%= transaction.catergory.name %>
+        </div>
+        
+       </div>
+        
+       
+      </div>
+      <div class="col-xs-3" style="text-align:center">
+        <h4>$<%= transaction.amount %></h4>
+        <p><%= transaction.account.name %></p>
+        
+      </div>
+    </div>
+  </div>
+  <% end %>
+  </div>
+  
 </div>
-<% end %>
-
-<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#expenses">
-  -
-</button>
-
-<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#income">
-  +
-</button>
 
 <div class="modal fade" id="expenses" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">

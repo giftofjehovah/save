@@ -42,22 +42,28 @@ end
 
 [
 	{
-		name: "Shopping"
+		name: "Shopping",
+		icon: "shopping-bag"
 	},
 	{
-		name: "Dining"
+		name: "Dining",
+		icon: "cutlery"
 	},
 	{
-		name: "Travel"
+		name: "Travel",
+		icon: "plane"
 	},
 	{
-		name: "Transport"
+		name: "Transport",
+		icon: "car"
 	},
 	{
-		name: "Bills"
+		name: "Bills",
+		icon: "credit-card"
 	},
 	{
-		name: "Others"
+		name: "Others",
+		icon: "random"
 	}
 ].each do |catergory|
 	Catergory.create!(catergory)

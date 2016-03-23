@@ -22,4 +22,70 @@
 body
 {
 	width: 100%;
+
+}
+footer
+{
+	padding-bottom: 70px;
+}
+#dashboard_head
+{
+	text-align: center;
+}
+#dashboard_head_body
+{
+	display: flex;
+	justify-content: space-between;
+
+}
+.space
+{
+	padding-left: 10px;
+}
+.v-center {
+  position: relative;
+  transform: translateY(50%);
+}
+.name_catergory
+{
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+}
+.name_catergory h4
+{
+	margin: 0;
+}
+#daily_budget
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+#transactions
+{
+	margin-top: 20px;
+}
+.icon
+{
+	margin-top: 5px;
+}
+.no_style_button
+{
+	font-size: 40px;
+	width: 20%;
+	background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    overflow: hidden;
+    outline: none;
+}
+.transaction_name
+{
+	display: flex;
+	margin-top: 15px;
+}
+.panel-body
+{
+	padding: 0;
 }
