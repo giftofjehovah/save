@@ -1,3 +1,25 @@
 // Place all the styles related to the dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.menu_icon
+{
+	width: 20%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+}
+#menu
+{
+	display: flex;
+	padding: 10px 1px 5px 1px 
+}
+.menu_icon p
+{
+	color: white;
+	font-size: 0.7em;
+	padding-top: 3px;
+}
+body
+{
+	width: 100%;
+}
