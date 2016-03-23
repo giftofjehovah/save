@@ -9,6 +9,9 @@
   </li>
 <% end %>
 </header>
+<% @accounts.each do |account| %>
+    <input type="hidden" id="<%=account.id%>" value="<%=account.balance%>">
+<%end%>
 <main class="container">
 
  <div class="row" id="dashboard_head">
@@ -75,11 +78,32 @@
         <%= form_for @transaction do |f| %>
         <%= f.hidden_field :kind, :value => "expenses"%>
 	        
-          <%= f.label "Account" %>
-          <%= f.collection_select(:account_id, @accounts, :id, :name, {}, {:class => 'form-control'}) %>
-          <%= f.collection_select(:catergory_id, @catergories, :id, :name, {}, {:class => 'form-control'}) %>
-	        <%= f.number_field :amount, class: 'form-control', placeholder: 'enter amount' %>
-          <%= f.text_field :name, class: 'form-control', placeholder: 'add a note' %>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-6">
+                <%= f.collection_select(:account_id, @accounts, :id, :name, {}, {:class => 'form-control special'}) %>
+              </div>
+              <div class="col-xs-6">
+                 <h3 id="bank_amount" style="line-height: 0">$0</h3>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="row">
+               <div class="col-xs-6">
+                 <%= f.collection_select(:catergory_id, @catergories, :id, :name, {}, {:class => 'form-control'}) %>
+              </div>
+              <div class="col-xs-6">
+                <%= f.number_field :amount, class: 'form-control', placeholder: 'enter amount' %>
+              </div>
+            </div>
+          </div>
+         
+	        <div class="form-group">
+            <%= f.text_field :name, class: 'form-control', placeholder: 'add a note' %>
+          </div>
+          
       </div>
       <div class="modal-footer">
         <%= f.submit "Add Expenses", class: 'btn btn-danger full_button' %>
@@ -94,21 +118,42 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">Add a Income</h4>
       </div>
       <div class="modal-body">
-        <%= form_for @transaction do |f| %>
-          <%= f.hidden_field :kind, :value => "income"%>
-          <%= f.text_field :name %>
-          <%= f.number_field :amount %>
-          <%= f.label "Account" %><br />
-          <%= f.collection_select(:account_id, @accounts, :id, :name) %>
-          <%= f.submit "Done" %>
-        <%end%>
+          <%= form_for @transaction do |f| %>
+        <%= f.hidden_field :kind, :value => "income"%>
+          
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-6">
+                <%= f.collection_select(:account_id, @accounts, :id, :name, {}, {:class => 'form-control special'}) %>
+              </div>
+              <div class="col-xs-6">
+                 <h3 id="bank_amount1" style="line-height: 0">$0</h3>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="row">
+               <div class="col-xs-6">
+                 <%= f.collection_select(:catergory_id, @catergories, :id, :name, {}, {:class => 'form-control'}) %>
+              </div>
+              <div class="col-xs-6">
+                <%= f.number_field :amount, class: 'form-control', placeholder: 'enter amount' %>
+              </div>
+            </div>
+          </div>
+         
+          <div class="form-group">
+            <%= f.text_field :name, class: 'form-control', placeholder: 'add a note' %>
+          </div>
+          
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <%= f.submit "Add Income", class: 'btn btn-success full_button' %>
+        <%end%>
       </div>
     </div>
   </div>
@@ -144,6 +189,34 @@
 </div>
 
 <script>
+
+  $('.special').on('change', function(event)
+  {
+    var bank = $('#bank_amount')
+    var bank1 = $('#bank_amount1')
+    var id = event.target.value
+    var amount = '$'+$('#'+id).val()
+    console.log(event.target.id)
+    if(event.target.id == "bank_amount1")
+    {
+      bank1.text(amount)
+    }
+    else
+    {
+      bank.text(amount) 
+    }
+  })
+
+  $('.no_style_button').on('click', function(event)
+  {
+    console.log($(event.target))
+    var bank = $('#bank_amount')
+    var bank1 = $('#bank_amount1')
+    var id = $('#transaction_account_id').val()
+    var amount = '$'+$('#'+id).val()
+    bank1.text(amount)
+    bank.text(amount)
+  })
 
     $('.transactions').on('click', function (event) {
       console.log(event.target)
