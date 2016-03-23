@@ -235,11 +235,12 @@
     </div>
     <div class="form-group">
       <%= f.hidden_field :limit, :placeholder => "limit", class: 'form-control' %>
-    </div>  	
+    </div> 
+    <%= f.submit "Create", :class => 'btn btn-success full_button' %>
+        <%end%> 	
       </div>
       <div class="modal-footer">
-        <%= f.submit "Create", :class => 'btn btn-success full_button' %>
-        <%end%>
+        
       </div>
     </div>
   </div>

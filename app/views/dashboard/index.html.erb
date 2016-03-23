@@ -106,13 +106,17 @@
 	        <div class="form-group">
             <%= f.text_field :name, class: 'form-control', placeholder: 'add a note' %>
           </div>
-          
+          <%= f.submit "Add Expenses", class: 'btn btn-danger full_button' %>
+           <%end%>
       </div>
       <div class="modal-footer">
-        <%= f.submit "Add Expenses", class: 'btn btn-danger full_button' %>
-        <%end%>
+      
+        
+        
       </div>
+     
     </div>
+
   </div>
 </div>
 
@@ -155,12 +159,15 @@
           <div class="form-group">
             <%= f.text_field :name, class: 'form-control', placeholder: 'add a note' %>
           </div>
-          
+           <%= f.submit "Add Income", class: 'btn btn-success full_button' %>
+<%end%>
       </div>
       <div class="modal-footer">
-        <%= f.submit "Add Income", class: 'btn btn-success full_button' %>
-        <%end%>
+      
+           
+        
       </div>
+
     </div>
   </div>
 </div>
@@ -203,17 +210,18 @@
           <div class="form-group">
             <%= f.text_field :name, class: 'form-control', placeholder: 'add a note' %>
           </div>
-          
-      </div>
-      <div class="modal-footer">
-        <div class="row">
-          <div class="col-xs-6">
-              <%= link_to 'Delete', @transaction, method: :delete, class: 'btn btn-danger half_button'%>
+           <div class="col-xs-6 destroy">
+              <%= link_to 'Delete', @transaction, method: :delete, class: 'btn btn-danger half_button '%>
           </div>
           <div class="col-xs-6">
             <%= f.submit "Edit", class: 'btn btn-success half_button' %>
             <%end%>
           </div>
+      </div>
+      <div class="modal-footer">
+        <div class="row">
+         
+          
         </div>
           
       </div>

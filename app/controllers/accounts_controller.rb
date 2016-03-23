@@ -47,9 +47,16 @@ class AccountsController < LoginController
   def destroy
   	@account = Account.find(params[:id])
 
+if @account.transactions
+  @account.transactions.each do |transaction|
+    transaction.destroy
+  end
+end
   	if @account.destroy
-		redirect_to accounts_path
-	end
+      
+		      redirect_to accounts_path
+        end
+	 
   	
   end
 

@@ -2,6 +2,7 @@ class TransactionsController < LoginController
 
   def update
     transaction = Transaction.find(params[:id])
+
     if transaction.update(transaction_params)
       redirect_to dashboard_path
     end
@@ -29,14 +30,14 @@ class TransactionsController < LoginController
 
   def destroy
      transaction = Transaction.find(params[:id])
-     account = transaction.account
+     @account = transaction.account
 
     if transaction.kind == "expenses"
-      account.balance += transaction.amount
+      @account.balance += transaction.amount
     elsif transaction.kind == "income"
-      account.balance -= transaction.amount
+      @account.balance -= transaction.amount
     end
-
+      @account.save
     if transaction.destroy
       redirect_to dashboard_path
     end
