@@ -69,21 +69,21 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">Add new Expenses</h4>
       </div>
       <div class="modal-body">
         <%= form_for @transaction do |f| %>
         <%= f.hidden_field :kind, :value => "expenses"%>
-	        <%= f.text_field :name %>
-	        <%= f.number_field :amount %>
-          <%= f.label "Account" %><br />
-          <%= f.collection_select(:account_id, @accounts, :id, :name) %>
-	        <%= f.submit "Done" %>
-      	<%end%>
+	        
+          <%= f.label "Account" %>
+          <%= f.collection_select(:account_id, @accounts, :id, :name, {}, {:class => 'form-control'}) %>
+          <%= f.collection_select(:catergory_id, @catergories, :id, :name, {}, {:class => 'form-control'}) %>
+	        <%= f.number_field :amount, class: 'form-control', placeholder: 'enter amount' %>
+          <%= f.text_field :name, class: 'form-control', placeholder: 'add a note' %>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <%= f.submit "Add Expenses", class: 'btn btn-danger full_button' %>
+        <%end%>
       </div>
     </div>
   </div>

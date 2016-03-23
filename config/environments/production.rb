@@ -74,6 +74,17 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
+  config.paperclip_defaults = {
+    :storage => :fog,
+    :fog_directory => ENV['aws_bucket'],
+    :fog_credentials => {
+      :provider => 'AWS',
+      :region => 'ap-southeast-1',
+      :aws_access_key_id => ENV['aws_key'],
+      :aws_secret_access_key => ENV['aws_secret']
+    }
+  }
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end

@@ -5,6 +5,7 @@ class DashboardController < LoginController
   	@daily_budget = daily_budget
  	  @transaction = Transaction.new
     @accounts = Account.where(user_id: current_user.id)
+    @catergories = Catergory.all
   end
 
   def daily_budget

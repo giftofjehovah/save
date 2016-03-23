@@ -28,6 +28,10 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem "rails-erd"
 gem "d3-rails"
+gem "puma"
+gem "paperclip", "~> 4.3"
+gem "fog"
+gem "figaro"
 
 # Use Unicorn as the app server
 # gem 'unicorn'
