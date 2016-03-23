@@ -41,7 +41,7 @@
           @style = 'danger'
         end
     %>
-    <div class='transactions panel panel-<%=@style%>' data-toggle="modal" data-target="#editTransaction" data-id="<%= transaction.id %>" data-name="<%= transaction.name %>" data-amount="<%= transaction.amount %>" data-catergory="<%= transaction.catergory.name %>" data-kind="<%= transaction.kind %>" data-account="<%= transaction.account.id %>">
+    <div class="transactions panel panel-<%=@style%>" data-toggle="modal" data-target="#editTransaction" data-id="<%= transaction.id %>" data-name="<%= transaction.name %>" data-amount="<%= transaction.amount %>" data-catergory="<%= transaction.catergory.name %>" data-kind="<%= transaction.kind %>" data-account="<%= transaction.account.id %>">
     <div class="panel-heading"></div>
     <div class="panel-body">
        <div class="col-xs-8">
@@ -164,25 +164,49 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">Edit Transaction</h4>
       </div>
       <div class="modal-body">
         <%= form_for @transaction, method: 'patch' do |f| %>
-          <%= f.hidden_field :id %>
-          <%= f.hidden_field :kind %>
-          <%= f.text_field :name %>
-          <%= f.label "Account" %><br />
-          <%= f.collection_select(:account_id, @accounts, :id, :name) %>
-          <%= f.number_field :amount %>
-          <%= f.submit "Done" %>
-        <%end%>
-        <div class="destroy">
-          <%= link_to 'Destroy', @transaction, method: :delete%>
-        </div>
+        <%= f.hidden_field :id %> 
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-6">
+                <%= f.collection_select(:account_id, @accounts, :id, :name, {}, {:class => 'form-control special'}) %>
+              </div>
+              <div class="col-xs-6">
+                 <h3 id="bank_amount2" style="line-height: 0">$0</h3>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="row">
+               <div class="col-xs-6">
+                 <%= f.collection_select(:catergory_id, @catergories, :id, :name, {}, {:class => 'form-control'}) %>
+              </div>
+              <div class="col-xs-6">
+                <%= f.number_field :amount, class: 'form-control', placeholder: 'enter amount' %>
+              </div>
+            </div>
+          </div>
+         
+          <div class="form-group">
+            <%= f.text_field :name, class: 'form-control', placeholder: 'add a note' %>
+          </div>
+          
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <div class="row">
+          <div class="col-xs-6">
+              <%= link_to 'Delete', @transaction, method: :delete, class: 'btn btn-danger half_button'%>
+          </div>
+          <div class="col-xs-6">
+            <%= f.submit "Edit", class: 'btn btn-success half_button' %>
+            <%end%>
+          </div>
+        </div>
+          
       </div>
     </div>
   </div>
@@ -194,37 +218,47 @@
   {
     var bank = $('#bank_amount')
     var bank1 = $('#bank_amount1')
+    var bank2 = $('#bank_amount2')
     var id = event.target.value
     var amount = '$'+$('#'+id).val()
-    console.log(event.target.id)
     bank1.text(amount)
     bank.text(amount) 
+    bank2.text(amount)
     
   })
 
   $('.no_style_button').on('click', function(event)
   {
-    console.log($(event.target))
+   
     var bank = $('#bank_amount')
     var bank1 = $('#bank_amount1')
+    
     var id = $('#transaction_account_id').val()
     var amount = '$'+$('#'+id).val()
     bank1.text(amount)
     bank.text(amount)
+
   })
 
-    $('.transactions').on('click', function (event) {
-      console.log(event.target)
-    var button = $(event.target) // Button that triggered the modal
+    $('.transactions').on('click', function(event) 
+    {
+
+    var button = $(event.currentTarget) // Button that triggered the modal
     var id = button.data('id') // Extract info from data-* attributes
     var name = button.data('name')
     var amount = button.data('amount')
     var kind = button.data('kind')
     var catergory = button.data('catergory')
     var account = button.data('account')
+    var bank = $('#bank_amount2')
+   
+    
     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
     // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
     var modal = $('#editTransaction')
+    var amount1 = '$'+$('#'+account).val()
+
+    bank.text(amount1)
     modal.find('.new_transaction').attr('id','edit_transaction_'+id)
     modal.find('.new_transaction').attr('action','/transactions/'+id)
     modal.find('#transaction_id').val(id)
