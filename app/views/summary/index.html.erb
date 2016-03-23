@@ -21,11 +21,28 @@
 </main>
 <% end %>
 <footer>
-	<nav>
-		<li><a href='<%= accounts_path %>'>Accounts</a></li>
-		<li><a href='<%= compare_path %>'>Compare</a></li>
-		<li><a href='<%= dashboard_path %>'>Dashboard</a></li>
-		<li><a href='<%= recurring_path %>'>Recurring</a></li>
-		<li><a href='<%= summary_path %>'>Summary</a></li>
-	</nav>
+  <nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container" id="menu">
+      <div class="menu_icon">
+        <a href='<%= accounts_path %>'><i class="fa fa-money fa-2x"></i></a>
+        <p>Accounts</p>
+      </div>
+      <div class="menu_icon">
+         <a href='<%= compare_path %>'><i class="fa fa-balance-scale fa-2x"></i></a>
+         <p>Compare</p>
+      </div>
+      <div class="menu_icon">
+         <a href='<%= dashboard_path %>'><i class="fa fa-tachometer fa-2x"></i></a>
+         <p>Dashboard</p>
+      </div>
+      <div class="menu_icon">
+        <a href='<%= recurring_path %>'><i class="fa fa-repeat fa-2x"></i></a>
+        <p>Recurring</p>
+      </div>
+      <div class="menu_icon">
+        <a href='<%= summary_path %>'><i class="fa fa-bar-chart fa-2x"></i></a>
+        <p>Summary</p>
+      </div>
+    </div>
+  </nav>
 </footer>
