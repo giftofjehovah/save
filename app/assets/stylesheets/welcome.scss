@@ -18,3 +18,37 @@
 {
 margin-top: 50px;
 }
+#homepage
+{
+	width:80%;
+	margin: 0 auto;
+}
+.picture
+{
+	width: 100%;
+	max-width: 350px;
+}
+#sign_up_button
+{
+	max-width: 300px;
+	width: 100%;
+}
+.homepage
+{
+	padding: 10px;
+}
+#a
+{
+	margin-top: 150px;
+}
+
+@media screen and (max-width: 480px) {
+    #homepage {
+        text-align: center;
+    }
+    #a
+{
+	margin-top: 0px;
+}
+
+}
