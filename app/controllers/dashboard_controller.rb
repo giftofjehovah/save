@@ -9,7 +9,7 @@ class DashboardController < LoginController
   end
 
   def daily_budget
-    @monthly = 5000/30
+    @monthly = 10000/30
     @monthly -= day_expenses
   # 	transactions = RecurringTransaction.where(user_id: current_user.id)
   # 	@monthly = 0
