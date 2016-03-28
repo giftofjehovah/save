@@ -2,8 +2,6 @@ class TransactionsController < LoginController
 
   def update
     transaction = Transaction.find(params[:id])
-
-    
     
     if transaction.update(transaction_params)
       redirect_to dashboard_path
@@ -22,7 +20,6 @@ class TransactionsController < LoginController
       account.balance += transaction_params[:amount].to_f
     end
 
-  	transaction.catergory = Catergory.find(1) 
   	if transaction.save
       if account.save
   		redirect_to dashboard_path
@@ -47,6 +44,6 @@ class TransactionsController < LoginController
 
  private 
   def transaction_params
-      params.require(:transaction).permit(:name, :amount, :kind, :account_id)
+      params.require(:transaction).permit(:name, :amount, :kind, :account_id, :catergory_id)
     end
 end

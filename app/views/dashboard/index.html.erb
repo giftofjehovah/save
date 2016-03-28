@@ -41,7 +41,7 @@
           @style = 'danger'
         end
     %>
-    <div class="transactions panel panel-<%=@style%>" data-toggle="modal" data-target="#editTransaction" data-id="<%= transaction.id %>" data-name="<%= transaction.name %>" data-amount="<%= transaction.amount %>" data-catergory="<%= transaction.catergory.name %>" data-kind="<%= transaction.kind %>" data-account="<%= transaction.account.id %>">
+    <div class="transactions panel panel-<%=@style%>" data-toggle="modal" data-target="#editTransaction" data-id="<%= transaction.id %>" data-name="<%= transaction.name %>" data-amount="<%= transaction.amount %>" data-catergory="<%= transaction.catergory.id %>" data-kind="<%= transaction.kind %>" data-account="<%= transaction.account.id %>">
     <div class="panel-heading"></div>
     <div class="panel-body">
        <div class="col-xs-8">
@@ -279,6 +279,7 @@
     modal.find('.new_transaction').attr('id','edit_transaction_'+id)
     modal.find('.new_transaction').attr('action','/transactions/'+id)
     modal.find('#transaction_id').val(id)
+    modal.find('#transaction_catergory_id').val(catergory)
     modal.find('#transaction_name').val(name)
     modal.find('#transaction_amount').val(amount)
     modal.find('#transaction_kind').val(kind)
