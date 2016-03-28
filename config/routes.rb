@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  namespace :api do
+    resources :transactions, only: [:index]
+  end
+
   get 'summary', to: 'summary#index'
 
   get 'compare', to: 'compare#index'
